@@ -1,0 +1,39 @@
+{
+    "name": "jobbrander/infoconnect-php-client",
+    "type": "library",
+    "description": "Infoconnect API Client for PHP projects",
+    "keywords": [
+        "jobs",
+        "api client",
+        "infoconnect"
+    ],
+    "homepage": "https://github.com/JobBrander/infoconnect-php-client",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Karl Hughes",
+            "email": "khughes.me@gmail.com",
+            "homepage": "https://github.com/karllhughes"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "jobbrander/jobs-common": "~1.0.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": ">=4.6",
+        "phpunit/php-code-coverage": "~2.0",
+        "mockery/mockery": ">=0.9.4",
+        "squizlabs/php_codesniffer": "~2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "JobBrander\\Clients\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "JobBrander\\Clients\\Test\\": "tests/src/"
+        }
+    }
+}
