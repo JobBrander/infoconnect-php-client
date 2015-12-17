@@ -3,7 +3,7 @@
 use JobBrander\Clients\InfoconnectClient;
 use Mockery as m;
 
-class DiceTest extends \PHPUnit_Framework_TestCase
+class InfoconnectClientTest extends \PHPUnit_Framework_TestCase
 {
     //
 }
