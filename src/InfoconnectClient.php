@@ -5,6 +5,27 @@ use GuzzleHttp\Client as HttpClient;
 class InfoconnectClient
 {
     /**
+     * API Key
+     *
+     * @var string
+     */
+    private $apiKey;
+    
+    /**
+     * Base API url
+     *
+     * @var string
+     */
+    private $baseUrl;
+    
+    /**
+     * Resource Type
+     *
+     * @var string
+     */
+    private $resourceType;
+    
+    /**
      * Create new client
      *
      * @param array $parameters
@@ -18,6 +39,20 @@ class InfoconnectClient
         });
 
         $this->setClient(new HttpClient);
+    }
+    
+    /**
+     * Get a single company by id
+     *
+     * @param $id
+     *
+     * @return Company
+     */
+    public function getCompany($id = null)
+    {
+        $this->client = $client;
+
+        return $this;
     }
 
     /**

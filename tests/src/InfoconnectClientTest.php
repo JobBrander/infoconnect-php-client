@@ -8,7 +8,10 @@ class InfoconnectClientTest extends \PHPUnit_Framework_TestCase
     // Test Client
     public function testItCanInstantiateClient()
     {
-        $params = [];
+        $params = [
+            'apiKey' => uniqid(),
+            'baseUrl' => 'https://api.infoconnect.com/v1/',
+        ];
         $client = new InfoconnectClient($params);
     }
 }
