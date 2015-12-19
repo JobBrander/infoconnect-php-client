@@ -4,7 +4,7 @@ class Company
 {
     public function __construct(\stdClass $object)
     {
-        foreach ($object AS $key => $value) {
+        foreach ($object as $key => $value) {
             $this->{$key} = $value;
         }
     }

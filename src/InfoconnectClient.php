@@ -7,21 +7,21 @@ use Psr\Http\Message\ResponseInterface;
 class InfoconnectClient
 {
     /**
-     * API Key
+     * API Key.
      *
      * @var string
      */
     private $apiKey;
     
     /**
-     * Base API url
+     * Base API url.
      *
      * @var string
      */
     private $baseUrl = 'https://api.infoconnect.com/';
     
     /**
-     * Create new client
+     * Create new client.
      *
      * @param array $parameters
      */
@@ -33,7 +33,7 @@ class InfoconnectClient
     }
     
     /**
-     * Get a single company by id
+     * Get a single company by id.
      *
      * @param $id
      *
@@ -49,9 +49,9 @@ class InfoconnectClient
     }
     
     /**
-     * Search companies using simple get method. Full list of parameters: http://developer.infoconnect.com/api/companies-get-search
+     * Search companies using simple get method.
      *
-     * @param $parameters
+     * @param $parameters developer.infoconnect.com/api/companies-get-search
      *
      * @return array Company objects in array
      */
@@ -62,7 +62,7 @@ class InfoconnectClient
         $response = $this->get('companies', $parameters);
         $objects = $this->decodeResponse($response);
 
-        foreach($objects as $company) {
+        foreach ($objects as $company) {
             $companies[] = new Company($company);
         }
 
@@ -70,7 +70,7 @@ class InfoconnectClient
     }
 
     /**
-     * Sets http client
+     * Sets http client.
      *
      * @param HttpClient $client
      *
@@ -84,7 +84,7 @@ class InfoconnectClient
     }
 
     /**
-     * Sets base parameters required by the API
+     * Sets base parameters required by the API.
      *
      * @param array $parameters
      *
@@ -106,7 +106,7 @@ class InfoconnectClient
     }
 
     /**
-     * Ensures response is valid, and decodes json
+     * Ensures response is valid, and decodes json.
      *
      * @param ResponseInterface $response
      *
@@ -124,7 +124,7 @@ class InfoconnectClient
     }
 
     /**
-     * Makes a get request to the API via the http client
+     * Makes a get request to the API via the http client.
      *
      * @param string $path
      * @param array $parameters
