@@ -16,7 +16,7 @@ class InfoconnectClientTest extends \PHPUnit_Framework_TestCase
 
     public function testItCanGetCompanyById()
     {
-        $id = uniqid();
+        $id = '826381212';
         $this->client->client = m::mock('GuzzleHttp\Client');
         $response = m::mock('Psr\Http\Message\ResponseInterface');
 
