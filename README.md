@@ -31,6 +31,21 @@ $result = $client->getCompany($id);
 var_dump($result);
 ```
 
+### Search for Companies by Name
+
+```php
+$client = new new InfoconnectClient(['apiKey' => XXX]);
+
+$parameters = [
+    'companyname' => 'Google',
+    'resourcetype' => 'Enhanced',
+];
+
+$results = $client->getSearchCompanies($parameters);
+
+var_dump($results);
+```
+
 ## Testing
 
 Unit testing is important. If you're going to make a pull request against this library, 
