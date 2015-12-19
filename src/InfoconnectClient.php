@@ -127,7 +127,6 @@ class InfoconnectClient
      * Makes a get request to the API via the http client
      *
      * @param string $path
-     *
      * @param array $parameters
      *
      * @return InfoconnectClient
