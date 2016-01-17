@@ -70,6 +70,24 @@ class InfoconnectClient
     }
     
     /**
+     * Count number of companies matching criteria using post method.
+     *
+     * @param $parameters developer.infoconnect.com/api/companies-post-count
+     *
+     * @return integer Count of matched results
+     */
+    public function postCountCompanies($parameters = [])
+    {
+        $companies = [];
+
+        $response = $this->post('companies/count', $parameters);
+
+        $count = $this->decodeResponse($response)->MatchCount;
+
+        return $count;
+    }
+    
+    /**
      * Search companies using post method.
      *
      * @param $parameters developer.infoconnect.com/api/companies-post-search
