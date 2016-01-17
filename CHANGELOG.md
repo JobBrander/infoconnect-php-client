@@ -14,7 +14,7 @@ All Notable changes to `infoconnect-php-client` will be documented in this file
 - Nothing
 
 ### Removed
-- Nothing
+- Automatic test coverage HTML generation
 
 ### Security
 - Nothing

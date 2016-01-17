@@ -73,6 +73,71 @@ class InfoconnectClientTest extends \PHPUnit_Framework_TestCase
         }
     }
 
+    public function testItCanPostCountCompanies()
+    {
+        $parameters = [
+            'companyname' => 'Google',
+        ];
+        
+        $this->client->client = m::mock('GuzzleHttp\Client');
+        $response = m::mock('Psr\Http\Message\ResponseInterface');
+        
+        $count = rand(1,500);
+        $content = '{
+          "MatchCount": "'.$count.'"
+        }';
+
+        $this->client->client->shouldReceive('request')
+            ->once()
+            ->andReturn($response);
+        $response->shouldReceive('getStatusCode')
+            ->once()
+            ->andReturn('200');
+        $response->shouldReceive('getBody')
+            ->once()
+            ->andReturn($response);
+        $response->shouldReceive('getContents')
+            ->once()
+            ->andReturn($content);
+
+        $resultCount = $this->client->postCountCompanies($parameters);
+
+        $this->assertTrue(is_int($count));
+        $this->assertEquals($count, $resultCount);
+    }
+
+    public function testItCanPostSearchCompanies()
+    {
+        $parameters = [
+            'companyname' => 'Google',
+            'resourcetype' => 'Enhanced',
+        ];
+        
+        $this->client->client = m::mock('GuzzleHttp\Client');
+        $response = m::mock('Psr\Http\Message\ResponseInterface');
+
+        $content = $this->generateCompanies();
+
+        $this->client->client->shouldReceive('request')
+            ->once()
+            ->andReturn($response);
+        $response->shouldReceive('getStatusCode')
+            ->once()
+            ->andReturn('200');
+        $response->shouldReceive('getBody')
+            ->once()
+            ->andReturn($response);
+        $response->shouldReceive('getContents')
+            ->once()
+            ->andReturn($content);
+
+        $results = $this->client->postSearchCompanies($parameters);
+
+        foreach ($results as $result) {
+            $this->assertEquals('JobBrander\Clients\Responses\Company', get_class($result));
+        }
+    }
+
     /**
      * @expectedException \Exception
      * @expectedExceptionMessage Invalid response format.
@@ -164,9 +229,9 @@ class InfoconnectClientTest extends \PHPUnit_Framework_TestCase
             'CompanyName' => 'Google',
         ];
 
-        $count = $this->client->postCountCompanies($parameters);
+        $resultCount = $this->client->postCountCompanies($parameters);
 
-        $this->assertTrue(is_int($count));
+        $this->assertTrue(is_int($resultCount));
     }
 
     public function testItCanPostSearchCompaniesWithRealApiKey()
