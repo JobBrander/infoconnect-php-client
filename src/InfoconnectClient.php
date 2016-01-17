@@ -68,6 +68,28 @@ class InfoconnectClient
 
         return $companies;
     }
+    
+    /**
+     * Search companies using post method.
+     *
+     * @param $parameters developer.infoconnect.com/api/companies-post-search
+     *
+     * @return array Company objects in array
+     */
+    public function postSearchCompanies($parameters = [])
+    {
+        $companies = [];
+
+        $response = $this->post('companies/search', $parameters);
+
+        $objects = $this->decodeResponse($response);
+
+        foreach ($objects as $company) {
+            $companies[] = new Company($company);
+        }
+
+        return $companies;
+    }
 
     /**
      * Sets http client.
@@ -138,5 +160,20 @@ class InfoconnectClient
         $query = http_build_query($parameters);
 
         return $this->client->request('GET', 'v1/'.$path.'?'.$query);
+    }
+
+    /**
+     * Makes a post request to the API via the http client.
+     *
+     * @param string $path
+     * @param array $parameters
+     *
+     * @return InfoconnectClient
+     */
+    private function post($path = '', $parameters = [])
+    {
+        $query = http_build_query(['apikey' => $this->apiKey]);
+
+        return $this->client->request('POST', 'v1/'.$path.'?'.$query, ['json' => $parameters]);
     }
 }

@@ -154,6 +154,25 @@ class InfoconnectClientTest extends \PHPUnit_Framework_TestCase
         }
     }
     
+    public function testItCanPostSearchCompaniesWithRealApiKey()
+    {
+        if (!getenv('APIKEY')) {
+            $this->markTestSkipped('APIKEY variable not set.');
+        }
+
+        $parameters = [
+            'CompanyName' => 'Google',
+            'ResourceType' => 'Enhanced',
+            'Limit' => '100',
+        ];
+
+        $results = $this->client->postSearchCompanies($parameters);
+
+        foreach ($results as $result) {
+            $this->assertEquals('JobBrander\Clients\Responses\Company', get_class($result));
+        }
+    }
+    
     private function generateCompanies()
     {
         $content = '[';
