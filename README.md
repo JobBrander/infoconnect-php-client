@@ -31,7 +31,9 @@ $result = $client->getCompany($id);
 var_dump($result);
 ```
 
-### Search for Companies by Name
+### Search for Companies
+
+#### Using GET Method
 
 ```php
 $client = new new InfoconnectClient(['apiKey' => XXX]);
@@ -45,6 +47,36 @@ $results = $client->getSearchCompanies($parameters);
 
 var_dump($results);
 ```
+
+#### Using POST Method
+
+```php
+$client = new new InfoconnectClient(['apiKey' => XXX]);
+
+$parameters = [
+    'companyname' => 'Google',
+    'resourcetype' => 'Enhanced',
+];
+
+$results = $client->postSearchCompanies($parameters);
+
+var_dump($results);
+```
+
+### Get Number of Results for Search
+
+```php
+$client = new new InfoconnectClient(['apiKey' => XXX]);
+
+$parameters = [
+    'companyname' => 'Google',
+];
+
+$results = $client->postCountCompanies($parameters);
+
+var_dump($results);
+```
+
 
 ## Testing
 
